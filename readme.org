@@ -1,0 +1,11 @@
+* uDecision2020
+  A place to discuss and track decisions made in choosing new
+  microcontrollers for the coming fall 2020 semester.
+
+  Here are some principles I think are important, possibly axiomatic:
+  1. Students need hands on experience with circuit construction, and
+     that means having some labs utilize solderless breadboards. For
+     the coming remote courses they won't be soldering.  This applies
+     for courses like ense352, where they can simply build their
+     projects on a breadboard.
+  2. 
