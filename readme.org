@@ -1,11 +1,57 @@
 * uDecision2020
   A place to discuss and track decisions made in choosing new
-  microcontrollers for the coming fall 2020 semester.
+  microcontrollers for the coming fall 2020 semester.  Dave Duguid
+  kind of initiated this in his email of 2019-12-09 where he suggested
+  moving to the [[https://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-mpu-eval-tools/stm32-mcu-mpu-eval-tools/stm32-nucleo-boards.html][Nucleo]] family of micros.
 
   Here are some principles I think are important, possibly axiomatic:
   1. Students need hands on experience with circuit construction, and
-     that means having some labs utilize solderless breadboards. For
+     that means having some labs utilize solderless breadboards.  For
      the coming remote courses they won't be soldering.  This applies
      for courses like ense352, where they can simply build their
-     projects on a breadboard.
-  2. 
+     projects on a breadboard, and join things together with discrete
+     wires, discrete components, and ribbon cables.
+  2. Students need to be able to read assembly language, and write
+     small amounts.  The need to write large projects entirely in
+     assembly language is rapidly fading.  However, learning how a
+     compiler maps their code to an executable is very important.  If
+     we force students to write ense352 term projects in assembly, we
+     might suggest they design them in C and then /write the
+     assembly/.
+  3. Whatever micro we decide to use in ense352 will probably also be
+     used in enel387, and we'll not have anything like the present
+     carrier board.  And we /cannot/ have them doing 387 projects on a
+     solderless breadboard linked to the micro with ribbon cables.
+     - we need to have a single, fairly robust, unit containing the
+       micro plus all the expansion circuitry.
+  4. Ense352 could still use the VLDISCO but this would not transfer
+     well to enel387 projects.  How do you expand it?
+     - If we decide to change, then the Nucleo-64 F100RB is fairly
+       equivalent and has most of the same quirks.  Since the
+       Nucleo-64 family has four connectors compatible with Arduino
+       (CN5,6,8,9), this does offer the hope of using Arduino shields
+       in 387.  But certain pins on the Nucleo are not
+       5V-tolerant, so we have to be careful which shields we
+       recommend.  Here's a list of non-5V-tolerant pins I made by
+       looking at the Nucleo-64 User Manual (UM1724-rev13).
+       - CN5 pins 4,5,6: D11,D12,D13 (3 out of 10)
+       - CN6: they all seem ok.  Don't know about NRST, but that's
+         special anyway.  (possibly 1 out of 8)
+       - CN8 pins1-6: A0-A5 (6 out of 6)
+       - CN9 pins 1,2,5: D0,D1,D4 (3 out of 8)
+     - Note: the Nucleo-144 family *also* connects with Arduino.
+
+  5. Enel387 will probably have a robot-based term project, based on
+     what David has said.
+  6. Enel487 labs can't be the same as previous years, because we
+     don't have enough boards or tubes to run the ball height control
+     system.  With the right hardware packages we could do a wide
+     variety of lab series.
+     - I'm thinking of having two micro boards, one F103RB (from
+       ense352) and one higher power like the F411RE or F446RE (which
+       we currently have samples of).  These communicate via CAN, one
+       reads sensors and transmits to the central; the central
+       processes the data.  The F103RB has a CAN tranceiver as an
+       alternate function on PA11(Rx) and PA12(Tx), which are brought out on
+       the morpho CN10 connector pins 14,12 respectively.
+
